@@ -26,7 +26,7 @@ function IndexPopup() {
   useEffect(() => {
     chrome.storage.local.get(['topic'], (t) => {
       console.log(`Topic: ${t.topic}`);
-      setValue('topic', t.topic);
+      setValue('topic', t.topic || process.env.PLASMO_PUBLIC_DEFAULT_TOPIC);
     })
     chrome.storage.local.get(['question'], (q) => {
       console.log(`Question: ${q.question}`);

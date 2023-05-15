@@ -8,7 +8,7 @@
   "scripts": {
     "local": "npx http-server ./build/chrome-mv3-prod -p 8080",
     "dev": "plasmo dev --target=exam-topic-enumerator --tag=custom",
-    "build": "plasmo build --target=exam-topic-enumerator --tag=custom",
+    "build": "plasmo build --target=exam-topic-enumerator",
     "package": "plasmo package"
   },
   "dependencies": {
