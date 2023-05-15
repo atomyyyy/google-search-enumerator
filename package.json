@@ -1,32 +1,45 @@
 {
   "name": "google-search-enumerator",
-  "displayName": "Google search enumerator",
+  "displayName": "Exam Topic Enumerator",
   "version": "0.0.1",
-  "description": "A basic Plasmo extension.",
+  "description": "Helper to loop all questions.",
   "author": "admin",
   "packageManager": "yarn@1.22.19",
   "scripts": {
-    "dev": "plasmo dev",
-    "build": "plasmo build",
+    "local": "npx http-server ./build/chrome-mv3-prod -p 8080",
+    "dev": "plasmo dev --target=exam-topic-enumerator --tag=custom",
+    "build": "plasmo build --target=exam-topic-enumerator --tag=custom",
     "package": "plasmo package"
   },
   "dependencies": {
+    "@emotion/cache": "^11.11.0",
+    "@emotion/react": "^11.11.0",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.13.0",
+    "@plasmohq/storage": "^1.5.0",
+    "next": "^13.4.1",
     "plasmo": "0.70.1",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-hook-form": "^7.43.9"
   },
   "devDependencies": {
+    "@plasmohq/prettier-plugin-sort-imports": "3.6.4",
     "@types/chrome": "0.0.227",
     "@types/node": "18.15.11",
     "@types/react": "18.0.32",
     "@types/react-dom": "18.0.11",
+    "postcss": "^8.4.23",
     "prettier": "2.8.7",
-    "typescript": "5.0.3",
-    "@plasmohq/prettier-plugin-sort-imports": "3.6.4"
+    "typescript": "5.0.3"
   },
   "manifest": {
     "host_permissions": [
       "https://*/*"
+    ],
+    "permissions": [
+      "storage",
+      "tabs"
     ]
   }
 }

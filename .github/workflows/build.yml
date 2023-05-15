@@ -1,0 +1,38 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Cache modules
+        uses: actions/cache@v1
+        id: npm-cache
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-npm-
+      - name: Use Node.js 19.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 19.x
+      - name: Install dependencies
+        run: npm install
+      - name: Build
+        env:
+          PLASMO_PUBLIC_API_KEY: ${{ secrets.PLASMO_PUBLIC_API_KEY }}
+          PLASMO_PUBLIC_CX: ${{ secrets.PLASMO_PUBLIC_CX }}
+          PLASMO_PUBLIC_DEFAULT_TOPIC: ${{ secrets.PLASMO_PUBLIC_DEFAULT_TOPIC }}
+        run: npm run build
+      - name: Zip Artifact
+        run: zip build/exam-topic-enumerator.zip dist/build
+      - name: Upload Artifact
+        uses: actions/upload-artifact@master
+        with:
+          name: exam-topic-enumerator.zip
+          path: build
