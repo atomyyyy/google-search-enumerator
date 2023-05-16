@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -30,9 +30,9 @@ jobs:
           PLASMO_PUBLIC_DEFAULT_TOPIC: ${{ secrets.PLASMO_PUBLIC_DEFAULT_TOPIC }}
         run: npm run build
       - name: Zip Artifact
-        run: zip -r ./exam-topic-enumerator ./build/exam-topic-enumerator-prod
+        run: zip -r build/exam-topic-enumerator ./build/exam-topic-enumerator-prod
       - name: Upload Artifact
         uses: actions/upload-artifact@master
         with:
           name: exam-topic-enumerator
-          path: .
+          path: build
