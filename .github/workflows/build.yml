@@ -30,9 +30,9 @@ jobs:
           PLASMO_PUBLIC_DEFAULT_TOPIC: ${{ secrets.PLASMO_PUBLIC_DEFAULT_TOPIC }}
         run: npm run build
       - name: Zip Artifact
-        run: zip build/exam-topic-enumerator.zip dist/build
+        run: zip -r target/exam-topic-enumerator.zip ./build
       - name: Upload Artifact
         uses: actions/upload-artifact@master
         with:
           name: exam-topic-enumerator.zip
-          path: build
+          path: target
