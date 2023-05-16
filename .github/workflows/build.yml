@@ -29,8 +29,6 @@ jobs:
           PLASMO_PUBLIC_CX: ${{ secrets.PLASMO_PUBLIC_CX }}
           PLASMO_PUBLIC_DEFAULT_TOPIC: ${{ secrets.PLASMO_PUBLIC_DEFAULT_TOPIC }}
         run: npm run build
-#       - name: Zip Artifact
-#         run: mkdir target && cd build/exam-topic-enumerator-prod && zip -r ../../target/exam-topic-enumerator *
       - name: Upload Artifact
         uses: actions/upload-artifact@master
         with:
